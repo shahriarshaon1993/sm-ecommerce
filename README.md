@@ -8,6 +8,7 @@ SM Ecommerce is an open sourece ecommerce platform management system using larav
 
 -   Clone the repo.
 -   Run `composer install`
+-   Run `cp .env.example .env`
 -   Run `php artisan migrate --seed`
 
 ## Contributing Guideline
