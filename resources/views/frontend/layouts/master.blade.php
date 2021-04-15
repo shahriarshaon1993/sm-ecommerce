@@ -6,7 +6,7 @@
 
         <title>{{ config('app.name') }}</title>
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         @yield('before-head')
     </head>
     <body class="antialiased">
@@ -23,7 +23,7 @@
         <!-- Start Footer section -->
         @include('frontend.partials._footer')
 
-        <script src="{{ asset('public/js/app.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
         @yield('before-body')
     </body>
 </html>
