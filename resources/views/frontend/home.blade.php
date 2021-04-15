@@ -10,10 +10,14 @@
                 @foreach ($products as $product)
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="{{ $product->getFirstMediaUrl('products') }}" width="100%" height="225">
+                            <a href="{{ route('product.details', $product->slug) }}">
+                                <img src="{{ $product->getFirstMediaUrl('products') }}" width="100%" height="225">
+                            </a>
                             <div class="card-body">
                                 <p class="card-text">
-                                    {{ $product->title }}
+                                    <a href="{{ route('product.details', $product->slug) }}">
+                                        {{ $product->title }}
+                                    </a>
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
