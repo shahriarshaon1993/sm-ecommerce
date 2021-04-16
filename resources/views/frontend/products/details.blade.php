@@ -13,7 +13,13 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $product->title }}</h5>
-                                <strong class="text-muted">BDT {{ $product->price }}</strong>
+
+                                @if ($product->sale_price != null && $product->sale_price > 0)
+                                    BDT<strike> {{ $product->price }}</strike> BDT {{ $product->sale_price }}
+                                @else
+                                    BDT {{ $product->price }}
+                                @endif
+
                                 <hr>
                                 <p>Description: </p>
                                 <p class="card-text">{{ $product->description }}</p>
@@ -21,7 +27,11 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-outline-secondary">Add to cart</button>
+                                        <form action="{{ route('cart.add') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
