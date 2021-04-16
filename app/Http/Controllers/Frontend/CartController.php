@@ -78,4 +78,9 @@ class CartController extends Controller
 
         return redirect()->back();
     }
+
+    public function checkout()
+    {
+        return view('frontend.checkout');
+    }
 }

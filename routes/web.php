@@ -23,4 +23,5 @@ Route::namespace('Frontend')->group(function () {
     Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 });
