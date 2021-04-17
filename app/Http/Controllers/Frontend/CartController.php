@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
+use App\Notifications\OrderEmailNotification;
 use Auth;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
@@ -128,6 +129,10 @@ class CartController extends Controller
                 'price' => $product['total_price']
             ]);
         }
+
+        $user = Auth::user();
+
+        $user->notify(new OrderEmailNotification($order, $user->name));
 
         session()->forget(['total', 'cart']);
         $this->setSuccess('Order placed successfully.');
