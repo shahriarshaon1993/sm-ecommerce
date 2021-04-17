@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController;
@@ -24,4 +25,17 @@ Route::namespace('Frontend')->group(function () {
     Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'proccessLogin']);
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'proccessRegister']);
+
+    Route::get('/activate/{token}', [AuthController::class, 'activate'])->name('activate');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    });
 });
