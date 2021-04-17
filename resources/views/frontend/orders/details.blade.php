@@ -8,6 +8,7 @@
                 <div class="card-header">
                     Order Details
                 </div>
+
                 <div class="card-body">
 
                     @include('frontend.partials._message')

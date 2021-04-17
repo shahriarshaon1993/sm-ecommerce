@@ -130,9 +130,9 @@ class CartController extends Controller
         }
 
         session()->forget(['total', 'cart']);
-        $this->setSuccess('Order Created');
+        $this->setSuccess('Order placed successfully.');
 
-        return redirect('/');
+        return redirect()->route('order.details', $order->id);
     }
 
     public function showOrder($id)
