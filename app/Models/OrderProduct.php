@@ -11,7 +11,7 @@ class OrderProduct extends Model
 
     protected $guarded = [];
 
-    protected $timestamps = false;
+    public $timestamps = false;
 
     public function order()
     {
