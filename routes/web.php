@@ -35,6 +35,9 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/activate/{token}', [AuthController::class, 'activate'])->name('activate');
 
     Route::middleware('auth')->group(function () {
+
+        Route::post('/order', [CartController::class, 'processOrder'])->name('order');
+
         Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     });
