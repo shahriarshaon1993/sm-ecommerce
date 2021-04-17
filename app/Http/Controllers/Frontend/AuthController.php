@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
 use App\Notifications\UserVerifyNotification;
 use Auth;
@@ -120,5 +121,13 @@ class AuthController extends Controller
         Auth::logout();
         $this->setSuccess('User logged out.');
         return redirect()->route('login');
+    }
+
+    public function profile()
+    {
+        $data = [];
+        $data['orders'] = Order::where('user_id', Auth::user()->id)->get();
+
+        return view('frontend.auth.profile', $data);
     }
 }
