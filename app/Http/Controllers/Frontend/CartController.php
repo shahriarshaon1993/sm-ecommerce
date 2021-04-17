@@ -8,6 +8,7 @@ use App\Models\Product;
 use Auth;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Validator;
 
 class CartController extends Controller
@@ -132,5 +133,12 @@ class CartController extends Controller
         $this->setSuccess('Order Created');
 
         return redirect('/');
+    }
+
+    public function showOrder($id)
+    {
+        $data = [];
+        $data['order'] = Order::with(['products', 'products.product'])->findOrFail($id);
+        return view('frontend.orders.details', $data);
     }
 }

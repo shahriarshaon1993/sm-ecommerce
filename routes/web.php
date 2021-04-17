@@ -37,6 +37,7 @@ Route::namespace('Frontend')->group(function () {
     Route::middleware('auth')->group(function () {
 
         Route::post('/order', [CartController::class, 'processOrder'])->name('order');
+        Route::get('/order/details/{id}', [CartController::class, 'showOrder'])->name('order.details');
 
         Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
